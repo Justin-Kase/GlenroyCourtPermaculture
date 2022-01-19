@@ -1,0 +1,56 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+ <div class="card shadow mt-0">
+  <div class="card-header bg-success text-white text-start">Reports<i class="fas fa-file-csv m-2"></i></div>
+  
+  <div class="card-body">
+
+    
+
+    {%  if greenhouse_data  %}
+      <table id="table_id" class="display p-2 m-3" style="width:100%">
+        <thead>
+            <tr>
+                <th>Temperature_Fahrenheit</th>
+                <th>Relative_Humidity</th>
+                <th>ID</th>
+                <th>timestamp</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          {%  for data_entry in greenhouse_data  %}
+            <tr>
+                <td>{{ data_entry.Temperature_Fahrenheit }}</td>
+                <td>{{ data_entry.Relative_Humidity }}</td>
+                <td>{{ data_entry.ID }}</td>
+                <td>{{ data_entry.timestamp }}</td>
+            </tr>
+          {% endfor %}  
+        </tbody>
+      </table>
+
+      <canvas id="myChart" width="500" height="400"></canvas>
+
+
+    <script type="text/javascript">
+        $.get('http://127.0.0.1:8000/dashboard/chartJSON', function(data) {
+            var ctx = $("#myChart").get(0).getContext("2d");
+            new Chart(ctx, {
+                type: 'line', data: data
+            });
+        });
+    </script>
+
+    {% else %}
+      <h3> You don't have any data</h3>
+    {%  endif %}
+  </div>
+</div>
+
+
+
+
+{% endblock %}
