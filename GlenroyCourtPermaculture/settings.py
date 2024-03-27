@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django_summernote',
     'graphene_django',
     'chartjs',
+    'gallery',
+    'vegetables',
 
  
 ]
@@ -85,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': "GlenroyCourtPermaculture",
-        'USER': "justin",
+        'USER': "postgres",
         'PASSWORD': "fisse",
         'HOST': "localhost",
         'PORT': "5432",  # 5432 by default

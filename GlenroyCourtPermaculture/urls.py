@@ -5,10 +5,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from GlenroyCourtPermaculture.views import index
 from dashboard.views import report
+from gallery.views import gallery
+from vegetables.views import vegetables
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path('', index),  
+    path('gallery/', gallery),
+    path('vegetables/', vegetables),
     path('reports/', report),
     path('dashboard/', include('dashboard.urls')),
     path('graphql', include('dashboard.urls')),

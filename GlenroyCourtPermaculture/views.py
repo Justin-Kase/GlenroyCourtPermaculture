@@ -4,7 +4,7 @@ from .models import Post
 
 def index(request):
     #return HttpResponse('index.html')
-     return render(request, 'index.html')
+     return render(request, 'index.htm')
 
 def individual_post(request):
     recent_post = Post.objects.get(id__exact=1)

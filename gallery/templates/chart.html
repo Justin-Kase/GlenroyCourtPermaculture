@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<canvas id="myChart" width="500" height="400"></canvas>
+
+
+<script type="text/javascript">
+    $.get('{% url "line_chart_json" %}', function(data) {
+        var ctx = $("#myChart").get(0).getContext("2d");
+        new Chart(ctx, {
+            type: 'line', data: data
+        });
+    });
+</script>
+
+{% endblock %}
+
+

@@ -21,6 +21,9 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.2.1/b-colvis-2.2.1/b-html5-2.2.1/b-print-2.2.1/cr-1.5.5/date-1.1.1/fc-4.0.1/fh-3.2.1/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
  
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.2.1/b-colvis-2.2.1/b-html5-2.2.1/b-print-2.2.1/cr-1.5.5/date-1.1.1/fc-4.0.1/fh-3.2.1/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
@@ -73,7 +76,13 @@
           <a class="navbar-brand" href="#">
             {% load static %}
             <img src="{% static 'dashboard/images/greenleaf.png' %}" alt="My image" width="20" height="20" ></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#navbarSupportedContent" 
+                  aria-controls="navbarSupportedContent" 
+                  aria-expanded="false" 
+                  aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -83,15 +92,31 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Fruit Trees</a>
+                <span class="nav-link" href="#">|</span>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Vegetables</a>
+                <a class="nav-link" href="/fruit-trees/">Fruit Trees</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Gallery</a>
+                <span class="nav-link" href="#">|</span>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/vegetables/">Vegetables</a>
+              </li>
+
+              <li class="nav-item">
+                <span class="nav-link" href="#">|</span>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/gallery">Gallery</a>
+              </li>
+
+              <li class="nav-item">
+                <span class="nav-link" href="#">|</span>
               </li>
               
               <li class="nav-item dropdown">
@@ -99,8 +124,9 @@
                   Greenhouses
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="greenhouse">Greenhouse 1</a></li>
-                  <li><a class="dropdown-item" href="greenhouse">Greenhouse 2</a></li>
+                  <li><a class="dropdown-item" href="/greenhouse1/">Greenhouse 1</a></li>
+                  <li><a class="dropdown-item" href="/greenhouse2/">Greenhouse 2</a></li>
+                  <li><a class="dropdown-item" href="/greenhouse3/">Greenhouse 3</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">View All</a></li>
                 </ul>
@@ -110,7 +136,6 @@
                 <span class="nav-link" href="#">|</span>
               </li>
 
-              
               <li class="nav-item">
                 <a class="nav-link" href="/dashboard/">dashboard</a>
               </li>
@@ -119,15 +144,15 @@
                 <span class="nav-link" href="#">|</span>
               </li>
 
-              
               <li class="nav-item">
                 <a class="nav-link" href="/admin/">Admin</a>
               </li>
 
-<!-- 
+              <!-- 
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li> -->
+              </li> 
+              -->
 
             </ul>
             <form class="d-flex">
@@ -149,20 +174,23 @@
         -->
 
        <!-- </div> -->
-
     
       <div class="col-12 p-2 m-2">
+
+     
         <div class="card shadow">
           <div class="card-header text-white bg-success">
             Glenroy Court Permaculture
           </div>
-          <div class="card-body">
+          <div class="card-body"> 
             
             {% block content %}<!-- default content text (typically empty) -->{% endblock %}
             
+         
+       
           </div>
         </div>
-
+      
            
       </div>
     </div>
@@ -182,10 +210,12 @@
       <h6 class="text-uppercase mb-4 font-weight-bold">
         Devine Perm
       </h6>
-      <p>
-        Here you can use rows and columns to organize your footer
-        content. Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit.
+      <p id="permaculture-paragraph">
+        Permaculture, a system of agriculture and design that promotes sustainability and self-sufficiency, has the potential to contribute to world peace in several ways. 
+        By promoting ecological and social sustainability, permaculture can help to mitigate the root causes of conflict, such as resource depletion, inequality, and food insecurity. 
+        Additionally, permaculture can foster community-building and cross-cultural understanding, as it often involves collaboration and knowledge-sharing among people from diverse backgrounds. 
+        By creating more resilient and equitable local food systems, permaculture can also reduce dependence on global markets and reduce the potential for conflict over resources. 
+        Overall, the principles and practices of permaculture offer a promising approach to promoting peace and sustainability at the local and global levels.
       </p>
     </div>
     <!-- Grid column -->
@@ -254,7 +284,7 @@
     <div class="col-md-7 col-lg-8 text-center text-md-start">
       <!-- Copyright -->
       <div class="p-3">
-        © 2022 Copyright:
+        © 2023 Copyright:
         <a class="text-white" href="https://trushell.com/"
            >GlenroyCourtPermaculture.com</a
           >
@@ -320,24 +350,44 @@
       </div>
     </div>
   </div>
+
   <!--[if IE]><div class="w-100 text-center bg-dark text-white pt-3 px-4 pb-1 position-fixed" style="z-index: 1000; bottom: 0;"><p onClick="parentNode.remove()">Please use a modern browser for a better browsing experience. <span class="float-right">X</span></p></div><![endif]-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.2.1/b-colvis-2.2.1/b-html5-2.2.1/b-print-2.2.1/cr-1.5.5/date-1.1.1/fc-4.0.1/fh-3.2.1/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.2.1/b-colvis-2.2.1/b-html5-2.2.1/b-print-2.2.1/cr-1.5.5/date-1.1.1/fc-4.0.1/fh-3.2.1/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
 
  
   <script type="text/javascript">
+    $(document).ready( function () {
+      $('#table_id').DataTable();
+
+      var p = $("#permaculture-paragraph");
+      var text = p.text();
+      if (text.length > 100) {
+        var shortText = text.substr(0, 100) + "...";
+        p.text(shortText);
+        var showMoreBtn = $("<button>").text("More").addClass("btn btn-primary");
+        p.after(showMoreBtn);
+        showMoreBtn.click(function() {
+          p.text(text);
+          showMoreBtn.text("Less");
+          var showLessBtn = $("<button>").text("Less").addClass("btn btn-primary");
+          p.after(showLessBtn);
+          showMoreBtn.hide();
+          showLessBtn.click(function() {
+            p.text(shortText);
+            showLessBtn.hide();
+            showMoreBtn.show();
+          });
+        });
+      }
 
 
-  $(document).ready( function () {
-    $('#table_id').DataTable();
-  });
-
-
+    });
 
     (function($){
       $('.i-accept').on('click', function() {   
@@ -350,13 +400,13 @@
         $('#cookie-notice').addClass('d-none');
       };
     })(jQuery);
-  </script>
-  <script type="text/javascript">
+  
   window.onload = function(){
     setTimeout(function(){
       document.getElementById("loader").remove();
     },1000);
   };
   </script>
+
 </body>
 </html>

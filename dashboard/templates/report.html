@@ -3,14 +3,12 @@
 {% block content %}
 {% load static %}
  <div class="card shadow mt-0">
-  <div class="card-header bg-success text-white text-start">Reports<i class="fas fa-file-csv m-2"></i></div>
+  <div class="card-header bg-success text-white text-start">Reports<!-- <i class="fas fa-file-csv m-2"></i> --></div>
   
   <div class="card-body">
-
-    
-
+ 
     {%  if greenhouse_data  %}
-      <table id="table_id" class="display p-2 m-3" style="width:100%">
+      <table id="table_id" class="table table-striped display p-2 m-3" style="width:100%">
         <thead>
             <tr>
                 <th>Temperature_Fahrenheit</th>
@@ -32,16 +30,65 @@
         </tbody>
       </table>
 
-      <canvas id="myChart" width="500" height="400"></canvas>
-
+      <canvas id="my-chart" width="500" height="400"></canvas>
 
     <script type="text/javascript">
-        $.get('http://127.0.0.1:8000/dashboard/chartJSON', function(data) {
-            var ctx = $("#myChart").get(0).getContext("2d");
-            new Chart(ctx, {
-                type: 'line', data: data
-            });
-        });
+
+  $.ajax({
+    type: "GET",
+    url: "_greenhouse_export_202201050918.cvs",
+    dataType: "text",
+    success: function(data) {
+      var labels = [];
+      var tempData = [];
+      var humidityData = [];
+      var rows = data.split("\n");
+      for (var i = 1; i < rows.length; i++) {
+        var cells = rows[i].split(",");
+        labels.push(cells[0]);
+        tempData.push(cells[1]);
+        humidityData.push(cells[2]);
+      }
+      var ctx = $("#my-chart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Temperature (F)",
+              data: tempData,
+              borderColor: "red",
+              fill: false
+            },
+            {
+              label: "Humidity (%)",
+              data: humidityData,
+              borderColor: "blue",
+              fill: false
+            }
+          ]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+              type: 'time',
+              time: {
+                unit: 'minute'
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+  });
+
+
     </script>
 
     {% else %}
@@ -49,8 +96,5 @@
     {%  endif %}
   </div>
 </div>
-
-
-
 
 {% endblock %}
